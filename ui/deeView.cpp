@@ -1,7 +1,7 @@
 #include "deeView.h"
 
 namespace dee{
-	View::View( QWidget* a_parent ){
+	View::View( QWidget* a_parent ) : QVTKWidget( a_parent ){
 		m_volume = NULL;
 		m_is_init = false;
 	}

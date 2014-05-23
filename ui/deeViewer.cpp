@@ -2,6 +2,7 @@
 
 #include "deeView2D.h"
 #include "deeView3D.h"
+#include "deeProfilerManager.h"
 
 #include <QtWidgets>
 
@@ -25,26 +26,32 @@ namespace dee{
 		m_views.push_back( l_coro_view );
 		m_views.push_back( l_3D_view );
 
+		// setup views ID
+		l_axial_view->setStringId( "DEE_AXIAL_VIEW" );
+		l_coro_view->setStringId( "DEE_SAGITTAL_VIEW" );
+		l_coro_view->setStringId( "DEE_CORONAL_VIEW" );
+		l_3D_view->setStringId( "DEE_3D_VIEW" );
+
 		// setup 2D views
 		l_axial_view->setPlaneOrientation( 0 );
-		l_sagit_view->setPlaneOrientation( 1 );
-		l_coro_view->setPlaneOrientation( 2 );
+		l_coro_view->setPlaneOrientation( 1 );
+		l_axial_view->setPlaneOrientation( 2 );
 
 		// build a simple layout for now
 
 		QHBoxLayout* l_main_layout = new QHBoxLayout;
 		this->setLayout( l_main_layout );
 		l_main_layout->setContentsMargins( QMargins() );
-		l_main_layout->setSpacing( 0 );
+		l_main_layout->setSpacing( 1 );
 
 
 		QVBoxLayout* l_left_layout = new QVBoxLayout;
 		l_left_layout->setContentsMargins( QMargins() );
-		l_left_layout->setSpacing( 0 );
+		l_left_layout->setSpacing( 1 );
 
 		QHBoxLayout* l_bottom_left_layout = new QHBoxLayout;
 		l_bottom_left_layout->setContentsMargins( QMargins() );
-		l_bottom_left_layout->setSpacing( 0 );
+		l_bottom_left_layout->setSpacing( 1 );
 
 		l_bottom_left_layout->addWidget( l_coro_view );
 		l_bottom_left_layout->addWidget( l_sagit_view );
@@ -70,6 +77,7 @@ namespace dee{
 		for( int i=0; i<m_views.size(); i++ ){
 			m_views[i]->setVolume( m_volume );
 		}
+		
 	}
 
 	vtkImageData* Viewer::getVolume(){
@@ -82,7 +90,7 @@ namespace dee{
 
 		if( l_dir.isNull() )
 			return;
-
+		M_StartProfile
 		if( m_volume )
 			m_volume->Delete();
 		m_volume = vtkImageData::New();

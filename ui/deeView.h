@@ -1,5 +1,5 @@
-#ifndef deeView_H
-#define deeView_H
+#ifndef DEE_VIEW_H
+#define DEE_VIEW_H
 
 #include <QVTKWidget.h>
 
@@ -39,4 +39,4 @@ namespace dee{
 	};
 }
 
-#endif // deeView_H
+#endif

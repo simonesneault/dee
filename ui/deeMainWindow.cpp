@@ -8,9 +8,12 @@ namespace dee{
 	MainWindow::MainWindow( QWidget* a_parent /*=NULL*/ ){
 		QHBoxLayout* l_main_layout = new QHBoxLayout;
 		this->setLayout( l_main_layout );
+		l_main_layout->setSpacing( 0 );
+		l_main_layout->setContentsMargins( QMargins() );
 
 		// Build left panel
 		QWidget* l_left_panel = new QWidget;
+		l_left_panel->setMinimumWidth( 200 );
 		l_left_panel->setMaximumWidth( 200 );
 		QVBoxLayout* l_left_layout = new QVBoxLayout;
 		l_left_panel->setLayout( l_left_layout );

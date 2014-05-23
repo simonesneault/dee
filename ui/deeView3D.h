@@ -1,12 +1,15 @@
-#ifndef deeView3D_H
-#define deeView3D_H
+#ifndef DEE_VIEW_3D_H
+#define DEE_VIEW_3D_H
 
 #include "deeView.h"
 
+class vtkGPUVolumeRaycastMapper;
 namespace dee{
 	class View3D : public View{
 
 		Q_OBJECT
+	protected:
+		
 
 	public:
 		View3D( QWidget* a_parent = NULL );
@@ -18,4 +21,4 @@ namespace dee{
 	};
 }
 
-#endif // deeView3D_H
+#endif

@@ -1,5 +1,5 @@
-#ifndef deeViewer_H
-#define deeViewer_H
+#ifndef DEE_VIEWER_H
+#define DEE_VIEWER_H
 
 #include <QWidget>
 
@@ -12,6 +12,7 @@ namespace dee{
 		
 		Q_OBJECT
 		
+	protected:
 		QVector<View*> m_views;
 		vtkImageData* m_volume;
 
@@ -29,4 +30,4 @@ namespace dee{
 	};
 }
 
-#endif //deeViewer_H
+#endif

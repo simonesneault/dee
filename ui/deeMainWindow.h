@@ -1,5 +1,5 @@
-#ifndef deeMainWindow_H
-#define deeMainWindow_H
+#ifndef DEE_MAIN_WINDOW_H
+#define DEE_MAIN_WINDOW_H
 
 #include <QWidget>
 
@@ -12,8 +12,7 @@ namespace dee{
 
 	protected:
 		
-		Viewer* m_viewer;		
-		
+		Viewer*      m_viewer;		
 	public:
 		MainWindow( QWidget* a_parent=NULL );
 		virtual ~MainWindow();
@@ -21,4 +20,4 @@ namespace dee{
 	};
 }
 
-#endif //deeMainWindow_H
+#endif
