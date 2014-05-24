@@ -8,10 +8,13 @@
 #include <QtXml>
 #include <QVTKWidget.h>
 
-// VTK classic forward declaration
-class vtkImageData;
-class vtkGPUVolumeRaycastMapper;
-class vtkResliceImageViewer;
+// VTK includes
+#include "vtkImageData.h"
+#include "vtkGPUVolumeRayCastMapper.h"
+#include "vtkPoints.h"
+#include "vtkPolyData.h"
+#include "vtkResliceImageViewer.h"
+#include "vtkVolumeProperty.h"
 
 // STL includes
 #ifdef WIN32
@@ -19,8 +22,12 @@ class vtkResliceImageViewer;
 #endif
 #include <iostream>
 
+// dee includes
+#include "deeProfilerElement.h"
+
 namespace dee{
 
+	class LoggerManager;
 	class NotificationManager;
 	class ProfilerManager;
 
@@ -33,6 +40,7 @@ namespace dee{
 
 	protected:
 		QApplication*           m_application;
+		LoggerManager*			m_logger_manager;
 		NotificationManager*	m_notification_manager;
 		ProfilerManager*		m_profiler_manager;
 	
@@ -42,8 +50,11 @@ namespace dee{
 		bool Start( QApplication* a_app );
 		
 		QApplication* getApplication();
+		LoggerManager* getLoggerManager();
 		ProfilerManager* getProfilerManager();
 		NotificationManager* getNotificationManager();
+
+		void notify( const char* a_file, const char* a_func, int a_line, int a_priority, const QString& a_message );
 		
 	private:
 		Core& operator= (const Core&){}
@@ -54,14 +65,14 @@ namespace dee{
 		~Core();
 	};
 
-
+	
 	// Macro !
-
+	
 	// get Main Engine
-	#define M_Engine Dee::Engine()
+	#define M_Engine Core::Engine()
 
 	// get Directory
-	#define M_AppDir Dee::Engine()->getApplication()->applicationDirPath()
+	#define M_AppDir M_Engine.getApplication()->applicationDirPath()
 	#define M_LogDir M_AppDir + "log/"
 
 	// refresh UI
@@ -69,14 +80,30 @@ namespace dee{
 	#define M_RefreshGUIOnly      qApp->processEvents( QEventLoop::ExcludeUserInputEvents );
 
 	// log
-	#define M_Throw( level, message ) { stl::Exception l_tmp_exception(__FILE__, M_FunctionName, __LINE__, level, M_Runtime.getIndent(), message); M_Runtime.process( &l_tmp_exception ) ;};
-	#define M_LogNum( variable ){ QString message( QString( #variable ) + " : " + QString().setNum( variable ) ); M_Notice( message ); };
-	#define M_LogVar( variable ){ QString message( QString( #variable ) + " : " + QString( variable ) ); M_Notice( message ); };
+	#ifdef WIN32
+		#define M_FunctionName __FUNCTION__
+	#else
+		#define M_FunctionName __PRETTY_FUNCTION__
+	#endif
+	#define M_Throw( message, level ) { M_Engine.notify( __FILE__, M_FunctionName, __LINE__, level, message );};
 		
-	#define M_Notice( message ) { M_Throw( stl::TH_PRIORITY_NOTICE, message ); };
-	#define M_Warning( message ) { M_Throw( stl::TH_PRIORITY_WARNING, message ); };
-	#define M_Error( message ) { M_Throw( stl::TH_PRIORITY_ERROR, message ); };
+	#define M_Notice( message ) { M_Throw( message, 0 ); };
+	#define M_Warning( message ) { M_Throw( message, 1 ); };
+	#define M_Error( message ) { M_Throw( message, 2 ); };
+	
+	#define M_LogVar( variable ){ QString message( QString( #variable ) + " : " + QVariant( variable ).toString() ); M_Notice( message ); };
 
+
+	// profiler
+	#ifdef _WIN32
+		#define M_StartProfile ProfilerElement l_profile_event( __FUNCTION__ );
+	#else 
+		#define M_StartProfile ProfilerElement l_profile_event( __PRETTY_FUNCTION__ );
+	#endif //_WIN32
+
+	#define M_StartInnerStep( a_step_name ) ProfilerElement* l_profiler_##a_step_name = new ProfilerElement( QString( "InnerStep :    " ) + #a_step_name );
+
+	#define M_EndInnerStep( a_step_name ) delete l_profiler_##a_step_name;
 }
 
 #endif

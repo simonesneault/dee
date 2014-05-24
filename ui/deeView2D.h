@@ -17,7 +17,7 @@ namespace dee{
 		View2D( QWidget* a_parent = NULL );
 		virtual ~View2D();
 
-		virtual void setVolume( vtkImageData* );
+		virtual void setImageData( vtkImageData* );
 		virtual void init();
 
 		void setPlaneOrientation( int );

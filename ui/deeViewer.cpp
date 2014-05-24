@@ -62,26 +62,26 @@ namespace dee{
 		l_main_layout->addLayout( l_left_layout, 3 );
 		l_main_layout->addWidget( l_3D_view, 2 );
 
-		m_volume = NULL;
+		m_image_data = NULL;
 	}
 	
 	Viewer::~Viewer(){
-		if( m_volume )
-			m_volume->Delete();
+		if( m_image_data )
+			m_image_data->Delete();
 	}
 
 	
-	void Viewer::setVolume( vtkImageData* a_volume ){
-		Q_ASSERT( a_volume );
-		m_volume = a_volume;
+	void Viewer::setImageData( vtkImageData* a_image_data ){
+		Q_ASSERT( a_image_data );
+		m_image_data = a_image_data;
 		for( int i=0; i<m_views.size(); i++ ){
-			m_views[i]->setVolume( m_volume );
+			m_views[i]->setImageData( m_image_data );
 		}
 		
 	}
 
-	vtkImageData* Viewer::getVolume(){
-		return m_volume;
+	vtkImageData* Viewer::getImageData(){
+		return m_image_data;
 	}
 
 	void Viewer::onOpenVolumeButton(){
@@ -91,9 +91,9 @@ namespace dee{
 		if( l_dir.isNull() )
 			return;
 		M_StartProfile
-		if( m_volume )
-			m_volume->Delete();
-		m_volume = vtkImageData::New();
+		if( m_image_data )
+			m_image_data->Delete();
+		m_image_data = vtkImageData::New();
 
 
 		vtkDICOMImageReader* l_reader = vtkDICOMImageReader::New();
@@ -101,9 +101,9 @@ namespace dee{
 		l_reader->Update();
 
 		
-		m_volume->DeepCopy( l_reader->GetOutput() );
+		m_image_data->DeepCopy( l_reader->GetOutput() );
 		l_reader->Delete();
-		this->setVolume( m_volume );
+		this->setImageData( m_image_data );
 
 	}
 }

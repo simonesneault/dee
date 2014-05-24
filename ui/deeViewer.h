@@ -12,7 +12,7 @@ namespace dee{
 		
 	protected:
 		QVector<View*> m_views;
-		vtkImageData* m_volume;
+		vtkImageData* m_image_data;
 
 	public:
 		Viewer( QWidget* a_parent=NULL );
@@ -20,8 +20,8 @@ namespace dee{
 		
 		View* getView( const QString& a_id );
 
-		void setVolume( vtkImageData* );
-		vtkImageData* getVolume();
+		void setImageData( vtkImageData* );
+		vtkImageData* getImageData();
 
 	public slots:
 		void onOpenVolumeButton(); 

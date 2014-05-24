@@ -12,14 +12,7 @@ endif()
 project( dee3 )
 
 # find and includes VTK
-find_package( VTK COMPONENTS
-	vtkCommonCore
-	vtkFiltersSources
-	vtkGUISupportQt
-	vtkIOImage
-	vtkInteractionImage
-	vtkRenderingOpenGL
-)
+find_package( VTK REQUIRED )
 include( ${VTK_USE_FILE} )
 if( "${VTK_QT_VERSION}" STREQUAL "" )
 	message( FATAL_ERROR "VTK was not built with Qt ")

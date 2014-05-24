@@ -15,7 +15,7 @@ namespace dee{
 		
 	protected:
 		QString			m_string_id;
-		vtkImageData*	m_volume;
+		vtkImageData*	m_image_data;
 		bool			m_is_init;
 
 	public:
@@ -31,8 +31,8 @@ namespace dee{
 		/**
 		 * Volume to be displayed
 		 */
-		virtual void setVolume( vtkImageData* ) = 0;
-		virtual vtkImageData* getVolume();
+		virtual void setImageData( vtkImageData* ) = 0;
+		virtual vtkImageData* getImageData();
 
 		virtual void init() = 0;
 		virtual bool isInit();

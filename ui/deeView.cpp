@@ -2,7 +2,7 @@
 
 namespace dee{
 	View::View( QWidget* a_parent ) : QVTKWidget( a_parent ){
-		m_volume = NULL;
+		m_image_data = NULL;
 		m_is_init = false;
 	}
 	
@@ -19,13 +19,13 @@ namespace dee{
 	}
 
 	
-	void View::setVolume( vtkImageData* a_volume ){
-		Q_ASSERT( a_volume );
-		m_volume = a_volume;
+	void View::setImageData( vtkImageData* a_image_data ){
+		Q_ASSERT( a_image_data );
+		m_image_data = a_image_data;
 	}
 
-	vtkImageData* View::getVolume(){
-		return m_volume;
+	vtkImageData* View::getImageData(){
+		return m_image_data;
 	}
 
 	bool View::isInit(){

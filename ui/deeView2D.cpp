@@ -6,7 +6,7 @@
 
 namespace dee{
 	View2D::View2D( QWidget* a_parent ):View( a_parent ){
-		m_volume = NULL;
+		m_image_data = NULL;
 		m_reslice_image_viewer = vtkResliceImageViewer::New();
 		m_reslice_image_viewer->SetResliceModeToAxisAligned();
 		m_plane_orientation = 0;
@@ -18,15 +18,18 @@ namespace dee{
 	}
 
 
-	void View2D::setVolume( vtkImageData* a_volume ){
-		
-		m_volume = a_volume;
-		Q_ASSERT( m_volume );
+	void View2D::setImageData( vtkImageData* a_image_data ){
+		M_StartProfile
+
+		m_image_data = a_image_data;
+		Q_ASSERT( m_image_data );
 
 		this->init();
-		m_reslice_image_viewer->SetInputData( a_volume );
+		m_reslice_image_viewer->SetInputData( m_image_data );
 		m_reslice_image_viewer->SetSliceOrientation( m_plane_orientation );
-		m_reslice_image_viewer->SetSlice( m_volume->GetDimensions()[m_plane_orientation]/2 );
+		m_reslice_image_viewer->SetSlice( m_image_data->GetDimensions()[m_plane_orientation]/2 );
+		m_reslice_image_viewer->SetColorLevel( 150 );
+		m_reslice_image_viewer->SetColorWindow( 700 );
 		m_reslice_image_viewer->Render();
 	}
 

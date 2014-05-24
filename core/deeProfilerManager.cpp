@@ -21,16 +21,6 @@
 #endif
 
 namespace dee{
-	
-	ProfilerElement::ProfilerElement( QString a_function_name ) : m_func_name( a_function_name ) {
-		m_timer.start();
-		Core::Engine().getProfilerManager()->startProfile( *this );
-	}
-
-	ProfilerElement::~ProfilerElement() {
-		m_value = m_timer.elapsed() / 1000.;
-		Core::Engine().getProfilerManager()->endProfile( *this );
-	}
 
 	ProfilerManager::ProfilerManager() : m_indent_level( -1 ), m_is_paused( false ){}
 

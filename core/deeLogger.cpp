@@ -5,8 +5,7 @@
 namespace dee{
     Logger::Logger(){
     }
-    Logger::~Logger(){
-    }
+    Logger::~Logger(){}
 	
 	void Logger::print( const QString &a_message ){
 #ifdef WIN32
@@ -24,11 +23,11 @@ namespace dee{
 		char *l_buffer = new char[ a_message.size() + 1 ];
 		CharToOemA( a_message.toUtf8().data(), l_buffer );
 		
-		std::cout << l_buffer;
+		std::cout << l_buffer << std::endl;
 		delete [] l_buffer;
 		SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), 7 );
 #else
-		std::cout << a_message..toUtf8().data();
+		std::cout << a_message..toUtf8().data() << std::endl;
 #endif
 	}	
 	
