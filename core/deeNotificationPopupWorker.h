@@ -2,8 +2,7 @@
 #ifndef DEE_NOTIFICATION_POPUP_WORKER_H
 #define DEE_NOTIFICATION_POPUP_WORKER_H
 
-
-#include <QObject>
+#include "deeCore.h"
 
 namespace dee{
     /**

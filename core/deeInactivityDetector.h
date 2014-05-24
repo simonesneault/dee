@@ -1,8 +1,7 @@
 #ifndef DEE_INACTIVITY_DETECTOR_H
 #define DEE_INACTIVITY_DETECTOR_H
 
-#include <QObject>
-#include <QTimer>
+#include "deeCore.h"
 
 namespace dee{
 

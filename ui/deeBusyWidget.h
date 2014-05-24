@@ -2,14 +2,7 @@
 #ifndef DEE_BUSY_WIDGET_H
 #define DEE_BUSY_WIDGET_H
 
-#include <QWidget>
-#include <QProgressDialog>
-#include <QLabel>
-#include <QBoxLayout>
-#include <QMovie>
-
-#include <QSvgRenderer>
-#include <QThread>
+#include "deeCore.h"
 
 namespace dee{
 

@@ -18,6 +18,7 @@ find_package( VTK COMPONENTS
 	vtkGUISupportQt
 	vtkIOImage
 	vtkInteractionImage
+	vtkRenderingOpenGL
 )
 include( ${VTK_USE_FILE} )
 if( "${VTK_QT_VERSION}" STREQUAL "" )

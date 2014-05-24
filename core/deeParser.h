@@ -1,7 +1,7 @@
 #ifndef DEE_PARSER_H
 #define DEE_PARSER_H
 
-#include <QtCore>
+#include "deeCore.h"
 
 namespace dee{
     class Parser : public QObject{

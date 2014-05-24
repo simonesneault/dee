@@ -1,7 +1,7 @@
 #ifndef DEE_NOTIFICATION_POPUP_H
 #define DEE_NOTIFICATION_POPUP_H
 
-#include <QWidget>
+#include "deeCore.h"
 
 namespace dee{
 

@@ -3,8 +3,6 @@
 
 #include "deeView.h"
 
-class vtkResliceImageViewer;
-
 namespace dee{
 	class View2D : public View{
 

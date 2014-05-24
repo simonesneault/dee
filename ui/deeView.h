@@ -1,7 +1,7 @@
 #ifndef DEE_VIEW_H
 #define DEE_VIEW_H
 
-#include <QVTKWidget.h>
+#include "deeCore.h"
 
 namespace dee{
 

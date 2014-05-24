@@ -1,9 +1,7 @@
 #ifndef DEE_VIEWER_H
 #define DEE_VIEWER_H
 
-#include <QWidget>
-
-class vtkImageData;
+#include "deeCore.h"
 
 namespace dee{
 	class View;

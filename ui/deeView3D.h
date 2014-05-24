@@ -3,7 +3,6 @@
 
 #include "deeView.h"
 
-class vtkGPUVolumeRaycastMapper;
 namespace dee{
 	class View3D : public View{
 

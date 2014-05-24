@@ -1,8 +1,7 @@
 #ifndef DEE_PROFILER_H
 #define DEE_PROFILER_H
 
-#include <QTime>
-#include <QMap>
+#include "deeCore.h"
 
 namespace dee{
 

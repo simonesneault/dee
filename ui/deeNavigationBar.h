@@ -1,7 +1,7 @@
 #ifndef DEE_NAVIGATION_BAR_H
 #define DEE_NAVIGATION_BAR_H
 
-#include <QWidget>
+#include "deeCore.h"
 
 namespace dee{
 

@@ -1,7 +1,7 @@
 #ifndef DEE_MAIN_WINDOW_H
 #define DEE_MAIN_WINDOW_H
 
-#include <QWidget>
+#include "deeCore.h"
 
 namespace dee{
 

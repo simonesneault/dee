@@ -1,7 +1,7 @@
 #ifndef DEE_OSIRIX_TF_READER_H
 #define DEE_OSIRIX_TF_READER_H
 
-#include <QObject>
+#include "deeCore.h"
 
 namespace dee{
 

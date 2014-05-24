@@ -2,7 +2,7 @@
 #ifndef DEE_OVERLAY_PAINTING_WIDGET_H
 #define DEE_OVERLAY_PAINTING_WIDGET_H
 
-#include <QWidget>
+#include "deeCore.h"
 
 namespace dee{
 

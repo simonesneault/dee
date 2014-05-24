@@ -2,7 +2,7 @@
 #ifndef DEE_BLUR_WIN_H
 #define DEE_BLUR_WIN_H
 
-#include <QWidget>
+#include "deeCore.h"
 
 namespace dee{
 

@@ -1,7 +1,7 @@
 #ifndef DEE_VIEWER_PANEL_H
 #define DEE_VIEWER_PANEL_H
 
-#include <QWidget>
+#include "deeCore.h"
 
 namespace dee{
 
